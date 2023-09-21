@@ -64,6 +64,7 @@ void Initialize (Local <Object> exports) {
 	Nan::SetMethod (exports, "swe_nod_aps_ut", node_swe_nod_aps_ut);
 	Nan::SetMethod (exports, "swe_get_orbital_elements", node_swe_get_orbital_elements);
 	Nan::SetMethod (exports, "swe_orbit_max_min_true_distance", node_swe_orbit_max_min_true_distance);
+	Nan::SetMethod (exports, "swe_solcross_ut", node_swe_solcross_ut);
 
 	// hel
 	Nan::SetMethod (exports, "swe_heliacal_ut", node_swe_heliacal_ut);

@@ -4,7 +4,7 @@
   Authors: Dieter Koch and Alois Treindl, Astrodienst Zurich
 
 ************************************************************/
-/* Copyright (C) 1997 - 2008 Astrodienst AG, Switzerland.  All rights reserved.
+/* Copyright (C) 1997 - 2021 Astrodienst AG, Switzerland.  All rights reserved.
 
   License conditions
   ------------------
@@ -20,17 +20,17 @@
   system. The software developer, who uses any part of Swiss Ephemeris
   in his or her software, must choose between one of the two license models,
   which are
-  a) GNU public license version 2 or later
+  a) GNU Affero General Public License (AGPL)
   b) Swiss Ephemeris Professional License
 
   The choice must be made before the software developer distributes software
   containing parts of Swiss Ephemeris to others, and before any public
   service using the developed software is activated.
 
-  If the developer choses the GNU GPL software license, he or she must fulfill
+  If the developer choses the AGPL software license, he or she must fulfill
   the conditions of that license, which includes the obligation to place his
-  or her whole software project under the GNU GPL or a compatible license.
-  See http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  or her whole software project under the AGPL or a compatible license.
+  See https://www.gnu.org/licenses/agpl-3.0.html
 
   If the developer choses the Swiss Ephemeris Professional license,
   he must follow the instructions as found in http://www.astro.com/swisseph/ 
@@ -62,7 +62,7 @@
  * move over from swephexp.h
  */
 
-#define SE_VERSION      "2.09.03" 
+#define SE_VERSION      "2.10.03" 
 
 #define J2000           2451545.0  	/* 2000 January 1.5 */
 #define B1950           2433282.42345905  	/* 1950 January 0.923 */
@@ -313,23 +313,23 @@
 /* planetary radii in meters */
 #define NDIAM  (SE_VESTA + 1)
 static const double pla_diam[NDIAM] = {1392000000.0, /* Sun */
-                           3476300.0, /* Moon */
-                           2439000.0 * 2, /* Mercury */
-                           6052000.0 * 2, /* Venus */
-                           3397200.0 * 2, /* Mars */
-                          71398000.0 * 2, /* Jupiter */
-                          60000000.0 * 2, /* Saturn */
-                          25400000.0 * 2, /* Uranus */
-                          24300000.0 * 2, /* Neptune */
-                           2500000.0 * 2, /* Pluto */
+                           3475000.0, /* Moon */
+                           2439400.0 * 2, /* Mercury */
+                           6051800.0 * 2, /* Venus */
+                           3389500.0 * 2, /* Mars */
+                          69911000.0 * 2, /* Jupiter */
+                          58232000.0 * 2, /* Saturn */
+                          25362000.0 * 2, /* Uranus */
+                          24622000.0 * 2, /* Neptune */
+                           1188300.0 * 2, /* Pluto */
                            0, 0, 0, 0,    /* nodes and apogees */
-                           6378140.0 * 2, /* Earth */
-                                 0.0, /* Chiron */
-                                 0.0, /* Pholus */
-                            913000.0, /* Ceres */
-                            523000.0, /* Pallas */
-                            244000.0, /* Juno */
-                            501000.0, /* Vesta */
+                           6371008.4 * 2, /* Earth */
+                            271370.0, /* Chiron */
+                            290000.0, /* Pholus */
+                            939400.0, /* Ceres */
+                            545000.0, /* Pallas */
+                            246596.0, /* Juno */
+                            525400.0, /* Vesta */
                         };
 
 
@@ -348,7 +348,7 @@ struct aya_init {double t0;
                  double ayan_t0; 
 		 AS_BOOL t0_is_UT;
 		 int prec_offset;};
-static const struct aya_init ayanamsa[] = {
+static const struct aya_init ayanamsa[SE_NSIDM_PREDEF] = {
 /* 0: Fagan/Bradley (Default) 
      "The American Sidereal Ephemeris, 1976-2000" (Astro Computing Services, 1981)
      states on S.V.P. ("Synetic Vernal Point"):
@@ -591,11 +591,8 @@ static const struct aya_init ayanamsa[] = {
       true ayanamshas. A deviation of around 0.1" remains,
       for unknown reasons. The difference between Lahiri (1) and
       Lahiri ICRC (45) amounts to 1.1". */
-{2435553.5, 23.25 - 0.00464207, FALSE, SEMOD_PREC_NEWCOMB}, 
+{2435553.5, 23.25 - 0.00464207, FALSE, SEMOD_PREC_NEWCOMB}, // 46: SE_SIDM_LAHIRI_ICRC
 /*************************/
-/*{2061539.789532065, 6.83333333, TRUE, -1}, *41: Manjula's Laghumanasa, 10 March 932, 12 PM LMT Ujjain (75.7684565 E), ayanamsha = 6°50' */
-/* */
-{J1900, 0, FALSE, -1},	                     /*46: - */
     };
 
 #define PLAN_DATA struct plan_data

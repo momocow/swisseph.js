@@ -169,3 +169,10 @@ swisseph.swe_julday (date.year, date.month, date.day, date.hour, swisseph.SE_GRE
 	    });
 	});
 });
+
+(function test_swe_solcross_ut() {
+	const result = swisseph.swe_solcross_ut(0, 0, 0);
+	assert (!result.error, result.error);
+	console.log('The crossing of the Sun over 0 deg:', result.jx);
+})();
+

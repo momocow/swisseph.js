@@ -1460,3 +1460,36 @@ NAN_METHOD(node_swe_orbit_max_min_true_distance) {
     HandleCallback (info, result);
     info.GetReturnValue().Set (result);
 };
+
+NAN_METHOD(node_swe_solcross_ut) {
+	Nan::HandleScope scope;
+
+	if (info.Length () < 3) {
+		Nan::ThrowTypeError ("Wrong number of arguments");
+	};
+
+	if (
+		!info [0]->IsNumber () ||
+		!info [1]->IsNumber () ||
+		!info [2]->IsNumber ()
+	) {
+		Nan::ThrowTypeError ("Wrong type of arguments");
+	};
+
+	double x2cross = Nan::To<double>(info[0]).FromJust();
+	double tjd_ut = Nan::To<double>(info[1]).FromJust();
+	int32_t iflag = Nan::To<int32_t>(info[2]).FromJust();
+	char serr [AS_MAXCH];
+	
+	double jx = ::swe_solcross_ut(x2cross, tjd_ut, iflag, serr);
+
+	Local <Object> result = Nan::New<Object> ();
+	
+	if (jx < tjd_ut) {
+		Nan::Set(result,Nan::New<String> ("error").ToLocalChecked(), Nan::New<String> (serr).ToLocalChecked());
+	} else {
+		Nan::Set(result,Nan::New<String> ("jx").ToLocalChecked(), Nan::New<Number> (jx));
+	}
+
+    info.GetReturnValue().Set (result);
+}

@@ -1489,6 +1489,19 @@ declare namespace swisseph {
         | {
               error: string;
           };
+
+    function swe_solcross_ut(
+        x2cross: number,
+        tjd: number,
+        flags: number,
+    ):
+        | {
+            jx: number
+          }
+        | {
+            error: string;
+        };
+
     // #endregion Pos
 
     // #region Hel

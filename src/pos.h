@@ -341,4 +341,6 @@ NAN_METHOD(node_swe_get_orbital_elements);
  */
 NAN_METHOD(node_swe_orbit_max_min_true_distance);
 
+NAN_METHOD(node_swe_solcross_ut);
+
 #endif // __swisseph_pos_h__
